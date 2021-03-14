@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Article API",
   "main": "src/index.js",
-  "scripts": {},
+  "scripts": {
+    "start:debug": "DEBUG=app* nodemon src/index.js",
+    "test:integration": "mocha --exit './test/integration/**/*.js'"
+  },
   "keywords": [],
   "author": "yohantha@gmail.com",
   "license": "ISC",
