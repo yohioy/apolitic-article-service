@@ -1,5 +1,9 @@
+const ArticleModel = require('./article.model');
+
 class Article {
-  constructor() {}
+  constructor() {
+    this.model = ArticleModel;
+  }
 
   /**
    *
@@ -7,7 +11,9 @@ class Article {
    * @returns {Object<Article>}
    */
   async getAll(status) {
-    return { total: 0, data: {} };
+    const filter = { articleStatus: String(status) };
+    const response = await this.model.find(filter);
+    return { total: response.length, data: response };
   }
 
   /**
@@ -17,7 +23,9 @@ class Article {
    * @returns {Object<Article>}
    */
   async getById(id, status) {
-    return { data: {} };
+    const filter = { _id: String(id), articleStatus: String(status) };
+    const data = this.model.find(filter);
+    return { data: data };
   }
 
   /**
@@ -25,7 +33,7 @@ class Article {
    * @returns {Promise}
    */
   async createCollection() {
-    return {};
+    return this.model.createCollection();
   }
 
   /**
@@ -33,7 +41,7 @@ class Article {
    * @returns {Promise}
    */
   async dropCollection() {
-    return {};
+    return this.model.collection.drop();
   }
 
   /**
@@ -42,7 +50,7 @@ class Article {
    * @returns {Array<Promise>}
    */
   async bulkCreate(articles) {
-    return {};
+    return this.model.insertMany(articles);
   }
 
   /**
@@ -50,7 +58,7 @@ class Article {
    * @returns {Promise}
    */
   async removeAll() {
-    return {};
+    return this.model.deleteMany({});
   }
 }
 
