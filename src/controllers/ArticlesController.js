@@ -5,6 +5,8 @@ const Article = require('../modules/articles/Article');
 class ArticlesController {
   async getAll(req, res) {
     debug(`get all articles`);
+    const { logger } = req.app.locals;
+
     const article = new Article();
 
     let data;
@@ -14,6 +16,7 @@ class ArticlesController {
       res.status(200).json(data);
     } catch (e) {
       debug(e);
+      logger.error(e.message);
       res.status(400).json({ message: 'failed' });
     }
   }
@@ -21,6 +24,7 @@ class ArticlesController {
   async getById(req, res) {
     debug(`get articles by ID`);
     const articleId = req.params.id;
+    const { logger } = req.app.locals;
     const article = new Article();
 
     let data;
@@ -30,6 +34,7 @@ class ArticlesController {
       res.status(200).json(data);
     } catch (e) {
       debug(e);
+      logger.error(e.message);
       res.status(400).json({ message: 'failed' });
     }
   }
