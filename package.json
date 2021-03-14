@@ -1,12 +1,24 @@
 {
   "name": "apolitic-article-service",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Article API",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "yohantha@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "debug": "^4.3.1",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-semistandard": "^15.0.1",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "prettier": "^2.2.1"
+  }
 }
