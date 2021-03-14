@@ -11,5 +11,13 @@
     "password": "rootpassword",
     "ssl": false,
     "logging": true
+  },
+  "Cookies": {
+    "GuestToken": {
+      "cookieName": "guuid",
+      "httpOnly": true,
+      "secure": false,
+      "expiryDate": 7200000
+    }
   }
 }
