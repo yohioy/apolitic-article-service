@@ -4,6 +4,7 @@ const Express = require('express');
 const cors = require('cors');
 const config = require('config');
 const routes = require('./routes');
+const mongoose = require('./lib/mongoose');
 
 const app = new Express();
 
@@ -13,6 +14,9 @@ const AppConfig = config.get('App');
 
 // Allow cors everywhere
 app.use(cors());
+
+// mongo db as a middleware
+app.use(mongoose());
 
 // route handler
 app.use('/api/', routes);
