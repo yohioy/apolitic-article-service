@@ -1,0 +1,15 @@
+{
+  "App": {
+    "host": "0.0.0.0",
+    "port": 5069
+  },
+  "Db": {
+    "host": "localhost",
+    "name": "blog",
+    "port": 27017,
+    "username": "root",
+    "password": "rootpassword",
+    "ssl": false,
+    "logging": true
+  }
+}
