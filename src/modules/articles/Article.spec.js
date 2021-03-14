@@ -2,6 +2,7 @@ const chai = require('chai');
 const sinon = require('sinon');
 const chaiAsPromised = require('chai-as-promised');
 const sinonChai = require('sinon-chai');
+const ArticleModel = require('./article.model');
 
 chai.use(chaiAsPromised);
 chai.use(sinonChai);
@@ -21,51 +22,100 @@ describe('src/modules/articles/Article', () => {
 
   describe('getAll()', () => {
     it('should return an an object', async () => {
-      const response = await article.getAll();
+      const data = [
+        {
+          _id: '604d5701c476c035ef3ee3ba',
+          title: 'Amet dolorum odio repellendus perferendis.',
+          articleStatus: '1',
+        },
+        {
+          _id: '604d5701c476c035ef3ee3bc',
+          title: 'Vel unde sunt.',
+          articleStatus: '1',
+        },
+      ];
+
+      const stub = sinon.stub(ArticleModel, 'find').callsFake(() => {
+        return data;
+      });
+      const spy = sinon.spy(article, 'getAll');
+
+      const response = await article.getAll('1');
 
       expect(response).to.be.an('object');
       expect(response).to.have.property('total').and.be.a('number');
-      expect(response).to.have.property('data').and.be.an('object');
+      expect(response).to.have.property('data').and.be.an('array');
+      expect(spy.getCall(0).args).to.have.lengthOf(1);
+      stub.restore();
     });
   });
 
   describe('getById()', () => {
     it('should return an an object', async () => {
-      const id = 'aaa-b175-47ba-b9d9-94f2ce9f5b14';
+      const id = '604d5701c476c035ef3ee3ba';
+      const data = {
+        _id: '604d5701c476c035ef3ee3ba',
+        title: 'Amet dolorum odio repellendus perferendis.',
+        articleStatus: '1',
+      };
+      const stub = sinon.stub(ArticleModel, 'find').callsFake(() => {
+        return data;
+      });
+
       const spy = sinon.spy(article, 'getById');
 
       const response = await article.getById(id);
+
       expect(spy.getCall(0).args).to.have.lengthOf(1);
       expect(response).to.be.an('object');
       expect(response).to.have.property('data').and.be.an('object');
+      stub.restore();
     });
   });
 
   describe('createCollection()', () => {
     it('should return an an object', async () => {
+      const stub = sinon
+        .stub(ArticleModel, 'createCollection')
+        .callsFake(() => {
+          return {};
+        });
       const response = await article.createCollection();
       expect(response).to.be.an('object');
+      stub.restore();
     });
   });
 
   describe('dropCollection()', () => {
     it('should return an an object', async () => {
+      const stub = sinon.stub(ArticleModel.collection, 'drop').callsFake(() => {
+        return {};
+      });
       const response = await article.dropCollection();
       expect(response).to.be.an('object');
+      stub.restore();
     });
   });
 
   describe('bulkCreate()', () => {
     it('should return an an object', async () => {
+      const stub = sinon.stub(ArticleModel, 'insertMany').callsFake(() => {
+        return {};
+      });
       const response = await article.bulkCreate();
       expect(response).to.be.an('object');
+      stub.restore();
     });
   });
 
   describe('removeAll()', () => {
     it('should return an an object', async () => {
+      const stub = sinon.stub(ArticleModel, 'deleteMany').callsFake(() => {
+        return {};
+      });
       const response = await article.removeAll();
       expect(response).to.be.an('object');
+      stub.restore();
     });
   });
 });
