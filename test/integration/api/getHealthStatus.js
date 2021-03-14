@@ -1,12 +1,12 @@
 const request = require('supertest');
 const { expect } = require('chai');
 
-describe('Route: GET /api/articles/', () => {
+describe('Route: GET /api/health/', () => {
   const app = require('../../../src');
   let response;
 
   before(async () => {
-    response = await request(app).get('/api/articles');
+    response = await request(app).get('/api/health');
   });
 
   it('should return 200 on success', async () => {
