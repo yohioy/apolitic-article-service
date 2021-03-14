@@ -5,6 +5,7 @@ const cors = require('cors');
 const config = require('config');
 const routes = require('./routes');
 const mongoose = require('./lib/mongoose');
+const { cookieTokenHandler } = require('./lib/cookie_tokens');
 
 const app = new Express();
 
@@ -17,6 +18,9 @@ app.use(cors());
 
 // mongo db as a middleware
 app.use(mongoose());
+
+// cookie middleware
+app.use(cookieTokenHandler);
 
 // route handler
 app.use('/api/', routes);
