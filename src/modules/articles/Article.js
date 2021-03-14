@@ -24,7 +24,7 @@ class Article {
    */
   async getById(id, status) {
     const filter = { _id: String(id), articleStatus: String(status) };
-    const data = this.model.find(filter);
+    const data = await this.model.findOne(filter);
     return { data: data };
   }
 

@@ -58,7 +58,7 @@ describe('src/modules/articles/Article', () => {
         title: 'Amet dolorum odio repellendus perferendis.',
         articleStatus: '1',
       };
-      const stub = sinon.stub(ArticleModel, 'find').callsFake(() => {
+      const stub = sinon.stub(ArticleModel, 'findOne').callsFake(() => {
         return data;
       });
 
