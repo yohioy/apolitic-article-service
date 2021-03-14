@@ -1,0 +1,21 @@
+{
+    "extends": [
+        "semistandard",
+        "prettier"
+    ],
+    "env": {
+        "browser": false,
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "plugins": ["prettier"],
+    "rules": {
+        "prettier/prettier": [
+            "error", {
+                "singleQuote": true,
+                "parser": "flow"
+            }
+        ]
+    }
+}
