@@ -4,9 +4,22 @@
   "description": "Article API",
   "main": "src/index.js",
   "scripts": {
+    "db:start": "cd database && docker-compose up -d",
+    "db:create:collections": "DEBUG=* node ./tools/createCollection.js",
+    "db:drop:collections": "DEBUG=* node ./tools/dropCollections.js",
+    "db:fill:bulkdata": "DEBUG=* node ./tools/createBulkData.js",
+    "db:clean:articles": "DEBUG=* node ./tools/removeAllArticles.js",
+    "db:clean:accessLogs": "DEBUG=* node ./tools/removeAllAccessLogs.js",
     "start:debug": "DEBUG=app* nodemon src/index.js",
+    "start": "node src/index.js",
+    "docker:build": "docker build -t apolitic-article-service .",
+    "docker:run": "docker run -p 5070:5069 apolitic-article-service",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ./src",
+    "test": "npm run lint && npm run test:integration && npm run test:unit",
     "test:integration": "mocha --exit './test/integration/**/*.js'",
-    "test:unit": "mocha --exit './src/**/*.spec.js'"
+    "test:unit": "nyc mocha --exit './src/**/*.spec.js'",
+    "test:coverage": "nyc npm run test:unit"
   },
   "keywords": [],
   "author": "yohantha@gmail.com",
@@ -24,8 +37,10 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-standard": "^5.0.0",
+    "faker": "^5.4.0",
     "mocha": "^8.3.2",
     "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
     "prettier": "^2.2.1",
     "sinon": "^9.2.4",
     "sinon-chai": "^3.5.0",
@@ -33,8 +48,11 @@
   },
   "dependencies": {
     "config": "^3.3.6",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.12.0"
+    "mongoose": "^5.12.0",
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3"
   }
 }
