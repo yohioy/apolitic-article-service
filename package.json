@@ -12,8 +12,6 @@
     "db:clean:accessLogs": "DEBUG=* node ./tools/removeAllAccessLogs.js",
     "start:debug": "DEBUG=app* nodemon src/index.js",
     "start": "node src/index.js",
-    "docker:build": "docker build -t apolitic-article-service .",
-    "docker:run": "docker run -p 5070:5069 apolitic-article-service",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ./src",
     "test": "npm run lint && npm run test:integration && npm run test:unit",
