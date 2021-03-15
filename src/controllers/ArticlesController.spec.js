@@ -29,7 +29,7 @@ describe('src/controllers/ArticlesController', () => {
 
   describe('getAll()', () => {
     it('should return status 200 with object on success', async () => {
-      const req = mockRequest({});
+      const req = mockRequest({ app: { locals: {} } });
       const res = mockResponse();
       const data = [
         {
@@ -53,7 +53,9 @@ describe('src/controllers/ArticlesController', () => {
     });
 
     it('should return status 400 with object on fail', async () => {
-      const req = mockRequest({});
+      const req = mockRequest({
+        app: { locals: { logger: { error: sinon.stub() } } },
+      });
       const res = mockResponse();
 
       const response = { message: 'failed' };
@@ -74,6 +76,7 @@ describe('src/controllers/ArticlesController', () => {
     it('should return status 200 with object on success', async () => {
       const req = mockRequest({
         params: { id: 'a123-b175-47ba-b9d9-94f2ce9f5b14' },
+        app: { locals: { logger: { error: sinon.stub() } } },
       });
       const res = mockResponse();
       const data = {
@@ -99,6 +102,7 @@ describe('src/controllers/ArticlesController', () => {
     it('should return status 400 with object on fail', async () => {
       const req = mockRequest({
         params: { id: 'a123-b175-47ba-b9d9-94f2ce9f5b14' },
+        app: { locals: { logger: { error: sinon.stub() } } },
       });
       const res = mockResponse();
       const response = { message: 'failed' };

@@ -22,7 +22,15 @@ const mockRequest = (data) => {
 
 describe('src/lib/mongoose/mongoose.js', () => {
   const connection = require('./mongoose');
-  const req = mockRequest({});
+  const req = mockRequest({
+    app: {
+      locals: {
+        cookieTokens: [{ name: '', value: '' }],
+        logger: { error: sinon.stub() },
+      },
+    },
+  });
+
   const res = mockResponse();
 
   const nextSpy = sinon.spy();
