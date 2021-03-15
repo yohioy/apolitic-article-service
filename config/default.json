@@ -6,7 +6,7 @@
   "Db": {
     "host": "localhost",
     "name": "blog",
-    "port": 27017,
+    "port": 27019,
     "username": "root",
     "password": "rootpassword",
     "ssl": false,
@@ -19,5 +19,8 @@
       "secure": false,
       "expiryDate": 7200000
     }
+  },
+  "Logger": {
+    "level": "critical"
   }
 }
