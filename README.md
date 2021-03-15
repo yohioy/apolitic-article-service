@@ -22,7 +22,10 @@ This project uses Mondodb
 npm run db:start
 ```
 DB runs on by default `localhost:27019`<br/>
-DB onfiguration details are in `config/default.json`
+DB onfiguration details are in `config/default.json`<br/>
+**Mongodb Client** <br/>
+MongoDb Compass is a nice GUI client to access the DB
+https://www.mongodb.com/try/download/compass
 
 #### 2. Create the Collection
 ```bash
