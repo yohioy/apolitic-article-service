@@ -9,12 +9,11 @@ describe('Route: GET /api/articles/:id', () => {
     response = await request(app).get('/api/articles/1');
   });
 
-  it('should return 200 on success', async () => {
-    expect(response.status).to.equal(200);
+  it('should return 400 on success', async () => {
+    expect(response.status).to.equal(400);
   });
 
   it('should return the articles object', async () => {
     expect(response).to.be.an.instanceOf(Object);
   });
-
 });
